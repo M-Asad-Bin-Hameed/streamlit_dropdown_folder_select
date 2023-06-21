@@ -1,18 +1,15 @@
 import streamlit as st
 import os
-import sys
-import shutil
 from pathlib import Path
 
 st.set_page_config(layout = 'wide')
                    
+def folder_selector():
+    if 'curr_directory' not in st.session_state:
+        st.session_state['curr_directory'] = os.path.abspath('.')
+        st.session_state['dir_list'] = \
+            next(os.walk(st.session_state['curr_directory']))[1]
 
-if 'curr_directory' not in st.session_state:
-    st.session_state['curr_directory'] = os.path.abspath('.')
-    st.session_state['dir_list'] = \
-        next(os.walk(st.session_state['curr_directory']))[1]
-
-def run():
     files = \
         [file for file in os.listdir(st.session_state['curr_directory']) 
          if os.path.isfile(os.path.join(st.session_state['curr_directory'], file))]
@@ -59,4 +56,4 @@ def run():
     st.write(os.listdir(st.session_state['curr_directory']))
 
 if __name__=='__main__':
-    run()
+    file_selector()

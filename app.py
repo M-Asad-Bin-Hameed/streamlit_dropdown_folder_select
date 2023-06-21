@@ -1,0 +1,3 @@
+from streamlit_folder_select import folder_selector
+
+folder_selector()
